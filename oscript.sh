@@ -12,10 +12,7 @@ current_user=$(/usr/sbin/scutil <<<"show State:/Users/ConsoleUser" |
     /usr/bin/awk '/Name :/ && ! /loginwindow/ && ! /root/ && ! /_mbsetupuser/ { print $3 }' |
     /usr/bin/awk -F '@' '{print $1}')
 
-/usr/bin/su - "$current_user" -c 
-
-#Install homebrew
-sudo -u $current_user NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#Install osquery & clamav
 eval "$(${homebrew_install_path}/bin/brew shellenv)"
 sudo -u $current_user brew install osquery
 sudo -u $current_user brew install clamav
